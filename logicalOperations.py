@@ -1,3 +1,5 @@
+import json
+
 from kanren import Relation, facts, conde, run, eq, lall, membero, lany
 from unification import var
 
@@ -5,33 +7,54 @@ parent = Relation()
 sibling = Relation()
 couple = Relation()
 
-facts(parent,
-        ("Cinthya", "Jose Andrés"),
-          ("Cinthya", "Juan Pablo"),
+# facts(parent,
+#         ("Cinthya", "Jose Andrés"),
+#           ("Cinthya", "Juan Pablo"),
+#
+#           ("Mónica",  "Tomás"),
+#           ("Jose Alberto",  "Tomás"),
+#
+#           ("Maribel", "Cinthya"),
+#           ("Maribel", "Mónica"),
+#           ("Maribel", "Gino Alonso"),
+#
+#           ("Roxana", "Jose Alberto")
+#       )
+#
+# facts(sibling,
+#       ("Jose Andrés", "Juan Pablo"),
+#           ("Cinthya", "Mónica"),
+#           ("Cinthya", "Gino")
+#       )
+#
+# facts(couple,
+#       ("Cinthya", "Andrés"),
+#           ("Mónica", "Jose Alberto"),
+#           ("Maribel", "Gino Alberto"),
+#           ("Gino Alonso", "Xiomara"),
+#             ("Don Juan", "Roxana")
+#       )
 
-          ("Mónica",  "Tomás"),
-          ("Jose Alberto",  "Tomás"),
+def loadFacts():
+    # open JSON file
+    with open('db.json') as json_file:
+        data = json.load(json_file)
+        for fact in data['parent']:
+            key = list(fact.keys())[0]
+            value = list(fact.values())[0]
+            facts(parent, (key, value))
 
-          ("Maribel", "Cinthya"),
-          ("Maribel", "Mónica"),
-          ("Maribel", "Gino Alonso"),
+        for fact in data['sibling']:
+            key = list(fact.keys())[0]
+            value = list(fact.values())[0]
+            facts(sibling, (key, value))
 
-          ("Roxana", "Jose Alberto")
-      )
+        for fact in data['couple']:
+            key = list(fact.keys())[0]
+            value = list(fact.values())[0]
+            facts(couple, (key, value))
 
-facts(sibling,
-      ("Jose Andrés", "Juan Pablo"),
-          ("Cinthya", "Mónica"),
-          ("Cinthya", "Gino")
-      )
-
-facts(couple,
-      ("Cinthya", "Andrés"),
-          ("Mónica", "Jose Alberto"),
-          ("Maribel", "Gino Alberto"),
-          ("Gino Alonso", "Xiomara"),
-            ("Don Juan", "Roxana")
-      )
+loadFacts()
 
 def grandparent(grandParent, individual):
     regularParent = var()
