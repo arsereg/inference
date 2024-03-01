@@ -1,0 +1,24 @@
+{
+  "parent": [
+    {"Cinthya": "Jose Andrés"},
+    {"Cinthya": "Juan Pablo"},
+    {"Mónica":  "Tomás"},
+    {"Jose Alberto":  "Tomás"},
+    {"Maribel": "Cinthya"},
+    {"Maribel": "Mónica"},
+    {"Maribel": "Gino Alonso"},
+    {"Roxana": "Jose Alberto"}
+  ],
+  "sibling": [
+    {"Jose Andrés": "Juan Pablo"},
+    {"Cinthya": "Mónica"},
+    {"Cinthya": "Gino"}
+  ],
+  "couple": [
+    {"Cinthya": "Andrés"},
+    {"Mónica": "Jose Alberto"},
+    {"Maribel": "Gino Alberto"},
+    {"Gino Alonso": "Xiomara"},
+    {"Don Juan": "Roxana"}
+  ]
+}
