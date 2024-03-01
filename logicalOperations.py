@@ -89,9 +89,45 @@ def siblings(person1, person2):
 
 def addParent(child, pparent):
     facts(parent, (child, pparent))
+    saveState()
 
 def addSibling(personA, personB):
     facts(sibling, (personA, personB))
+    saveState()
 
 def addCouple(personA, personB):
     facts(couple, (personA, personB))
+
+def getFacts(relation, relation_name):
+    result = []
+    result.append((f"Facts for {relation_name}:"))
+    for fact in relation.facts:
+        # Each fact is a tuple in the relation's .facts set
+        result.append((f"  {fact[0]} is {relation_name} of {fact[1]}"))
+    return result
+
+#get all facts in JSON format
+def saveState():
+    parentFacts = []
+    for fact in parent.facts:
+        parentFacts.append({fact[0]: fact[1]})
+
+    siblingFacts = []
+    for fact in sibling.facts:
+        siblingFacts.append({fact[0]: fact[1]})
+
+    coupleFacts = []
+    for fact in couple.facts:
+        coupleFacts.append({fact[0]: fact[1]})
+
+    data = {
+        "parent": parentFacts,
+        "sibling": siblingFacts,
+        "couple": coupleFacts
+    }
+
+    with open('db.json', 'w') as outfile:
+        json.dump(data, outfile)
+
+saveState()
+

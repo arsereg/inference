@@ -40,9 +40,4 @@ def addCouple(individual1, individual2):
 
 
 def getFacts(relation, relation_name):
-    result = []
-    result.append((f"Facts for {relation_name}:"))
-    for fact in relation.facts:
-        # Each fact is a tuple in the relation's .facts set
-        result.append((f"  {fact[0]} is {relation_name} of {fact[1]}"))
-    return result
+    return logicalOperations.getFacts(relation, relation_name)
