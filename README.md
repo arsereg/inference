@@ -7,3 +7,8 @@ To start the application run main.py file.
 ```python3 main.py```
 
 The application will start and you'll be guided through the application.
+
+
+#### Project created by:
+- [Marin G.]
+- [Quiros J.]
